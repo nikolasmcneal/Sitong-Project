@@ -1,0 +1,97 @@
+<script src="jspsych/plugins/jquery-3.5.1.min.js"></script>
+<html>
+    <head>
+        <script src="jspsych/jspsych.js"></script>
+        <!DOCTYPE html>
+    <script src="jspsych/plugins/jspsych-blocks.js"></script>
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <link rel="stylesheet" href="css/jspsych.css">
+</head>
+<body></body>
+<script>
+
+    // Fixation duration, this is also currently used if the participant selects
+    // "Space" -- neither Left or Right -- and no border is shown
+    // for their selection
+    const fixation_duration = 500; 
+    
+
+
+    var timeline = [];
+
+
+
+
+    var fixation = {
+        type: 'html-keyboard-response',
+        stimulus: '<div style="font-size:60px;">+</div>',
+        choices: jsPsych.NO_KEYS,
+        trial_duration: fixation_duration,
+    };
+
+ 
+
+
+
+
+
+    //Creates the object of six colors on the left
+    function drawRectL(c){
+        var ctx = c.getContext('2d');
+        ctx.beginPath(); 
+
+        var a = Math.floor(Math.random()*8);
+        ctx.fillStyle = 'white'
+        ctx.fillRect(0, 0, 400, 400);
+    }
+
+
+
+
+
+
+    function drawRectR(d){
+        var ctx = d.getContext('2d');
+        ctx.beginPath();
+        
+        var g = Math.floor(Math.random()*8);
+        ctx.fillStyle = 'white'
+        ctx.fillRect(0, 0, 400, 400);
+
+    }
+
+
+
+
+    var n = 5; //number of training trials
+
+
+
+
+
+    //This is the training section for the trials where reward is summed (not fixed)
+    var trial_training = {
+        type: 'blocks',
+        stimulus_L: drawRectL,
+        stimulus_R: drawRectR,
+        choices: ['f','j']
+    };
+    var node = {
+        timeline: [fixation, trial_training],
+        repetitions: n
+    }
+    timeline.push(node)
+
+
+
+
+
+
+    jsPsych.init({
+        timeline,
+        on_finish: function () { 
+            jsPsych.data.displayData(); 
+        }
+    });
+</script>
+</html>
