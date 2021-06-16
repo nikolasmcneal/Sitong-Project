@@ -9,6 +9,14 @@
 </head>
 <body></body>
 <script>
+    var x=600
+      var y=250
+      var boxes11=[]
+      var boxes22=[]
+      var percentage=0.64
+      var percentageofwhite1=1-percentage
+      var percentage2=0.622
+      var percentageofwhite2=1-percentage2
 
     // Fixation duration, this is also currently used if the participant selects
     // "Space" -- neither Left or Right -- and no border is shown
@@ -43,6 +51,26 @@
         var a = Math.floor(Math.random()*8);
         ctx.fillStyle = 'white'
         ctx.fillRect(0, 0, 400, 400);
+
+        for(var p = 0 ; p < 50 ; p++){                  
+            for (var i = 0; i < 50; i++) {
+
+                var boxes_in_box1={q:6*p,
+                            w:6*i,
+                            e:6}
+                ctx.stroke();       
+                ctx.fillStyle=`rgb(255,255,255)`;
+                ctx.fillRect(boxes_in_box1.q, boxes_in_box1.w, boxes_in_box1.e, boxes_in_box1.e);  
+                boxes11.push(boxes_in_box1); }
+        }
+        for(var n = 0; n< percentage*2500; n++){
+            
+            var a = Math.floor(Math.random()*boxes11.length);
+            ctx.stroke();
+            ctx.fillStyle=`black`;
+            ctx.fillRect(boxes11[a].q,boxes11[a].w,boxes11[a].e,boxes11[a].e);
+            boxes11.splice(a,1);
+        };
     }
 
 
@@ -57,6 +85,25 @@
         var g = Math.floor(Math.random()*8);
         ctx.fillStyle = 'white'
         ctx.fillRect(0, 0, 400, 400);
+
+        for(var p = 0 ; p < 50 ; p++){                  
+            for (var i = 0; i < 50; i++) {
+
+                var boxes_in_box2={q:6*p,
+                            w:6*i,
+                            e:6}
+                ctx.stroke();       
+                ctx.fillStyle=`rgb(255,255,255)`;
+                ctx.fillRect(boxes_in_box2.q,boxes_in_box2.w,boxes_in_box2.e,boxes_in_box2.e);  
+                boxes22.push(boxes_in_box2); }
+        }
+        for(var m = 0; m < percentage2*2500; m++){
+                var b = Math.floor(Math.random()*boxes22.length);
+            ctx.stroke();
+            ctx.fillStyle=`black`;
+            ctx.fillRect(boxes22[b].q,boxes22[b].w,boxes22[b].e,boxes22[b].e);
+            boxes22.splice(b,1);
+        };
 
     }
 
